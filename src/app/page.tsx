@@ -58,43 +58,87 @@ export default function Home() {
       </section>
 
       {/* Proyectos */}
-      <section id="proyectos" className="py-20 px-4 max-w-6xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">Proyectos</h2>
-        <div className="w-16 h-1 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full mx-auto mb-12"></div>
+<section id="proyectos" className="py-20 px-4 max-w-6xl mx-auto">
+  <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">Proyectos</h2>
+  <div className="w-16 h-1 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full mx-auto mb-12"></div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* PlanGuard */}
-          <div className="bg-white/5 backdrop-blur rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition group">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="bg-blue-500 p-2 rounded-xl">
-                <Layers size={24} />
-              </div>
-              <h3 className="text-xl font-bold">PlanGuard</h3>
-            </div>
-            <p className="text-white/60 mb-4">
-              Sistema de control de proyectos para empresa de diseño y remodelaciones en Florida, EE.UU.
-            </p>
-            <div className="flex flex-wrap gap-2 mb-4">
-              {["Next.js", "Supabase", "Resend", "Tailwind", "Vercel"].map((tech) => (
-                <span key={tech} className="text-xs bg-white/10 px-2 py-1 rounded-full text-white/70">
-                  {tech}
-                </span>
-              ))}
-            </div>
-            <div className="flex gap-3">
-              <a href="#" className="text-blue-400 hover:text-blue-300 text-sm flex items-center gap-1">
-                <ExternalLink size={14} /> Ver proyecto
-              </a>
-            </div>
-          </div>
-
-          {/* Próximos proyectos */}
-          <div className="bg-white/5 backdrop-blur rounded-2xl p-6 border border-dashed border-white/20 flex flex-col items-center justify-center min-h-[200px]">
-            <span className="text-4xl mb-3">🚀</span>
-            <p className="text-white/50 text-center">Próximamente más proyectos</p>
-          </div>
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    {/* PlanGuard */}
+    <div className="bg-white/5 backdrop-blur rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition group">
+      <div className="flex items-center gap-3 mb-4">
+        <div className="bg-blue-500 p-2 rounded-xl">
+          <Layers size={24} />
         </div>
-      </section>
+        <h3 className="text-xl font-bold">PlanGuard</h3>
+      </div>
+      <p className="text-white/60 mb-4">
+        Sistema de control de proyectos para empresa de diseño y remodelaciones en Florida, EE.UU.
+      </p>
+      <div className="flex flex-wrap gap-2 mb-4">
+        {["Next.js", "Supabase", "Resend", "Tailwind", "Vercel"].map((tech) => (
+          <span key={tech} className="text-xs bg-white/10 px-2 py-1 rounded-full text-white/70">
+            {tech}
+          </span>
+        ))}
+      </div>
+      <a href="https://planguard-app.vercel.app" target="_blank" className="text-blue-400 hover:text-blue-300 text-sm flex items-center gap-1">
+        <ExternalLink size={14} /> Ver proyecto
+      </a>
+    </div>
+
+    {/* El Cubano */}
+    <div className="bg-white/5 backdrop-blur rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition group">
+      <div className="flex items-center gap-3 mb-4">
+        <div className="bg-amber-500 p-2 rounded-xl">
+          <Globe size={24} />
+        </div>
+        <h3 className="text-xl font-bold">El Cubano</h3>
+      </div>
+      <p className="text-white/60 mb-4">
+        Landing page gourmet para restaurante de comida tradicional cubana. Diseño elegante y moderno.
+      </p>
+      <div className="flex flex-wrap gap-2 mb-4">
+        {["Next.js", "Tailwind", "Vercel"].map((tech) => (
+          <span key={tech} className="text-xs bg-white/10 px-2 py-1 rounded-full text-white/70">
+            {tech}
+          </span>
+        ))}
+      </div>
+      <a href="https://el-cubano-kmi3333333.vercel.app" target="_blank" className="text-blue-400 hover:text-blue-300 text-sm flex items-center gap-1">
+        <ExternalLink size={14} /> Ver proyecto
+      </a>
+    </div>
+
+    {/* Barbería */}
+    <div className="bg-white/5 backdrop-blur rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition group">
+      <div className="flex items-center gap-3 mb-4">
+        <div className="bg-emerald-500 p-2 rounded-xl">
+          <Globe size={24} />
+        </div>
+        <h3 className="text-xl font-bold">BarberoClub</h3>
+      </div>
+      <p className="text-white/60 mb-4">
+        Landing page para barbería premium. Fresca, moderna y con reserva por WhatsApp.
+      </p>
+      <div className="flex flex-wrap gap-2 mb-4">
+        {["Next.js", "Tailwind", "Vercel"].map((tech) => (
+          <span key={tech} className="text-xs bg-white/10 px-2 py-1 rounded-full text-white/70">
+            {tech}
+          </span>
+        ))}
+      </div>
+      <a href="https://barberia-ten-nu.vercel.app" target="_blank" className="text-blue-400 hover:text-blue-300 text-sm flex items-center gap-1">
+        <ExternalLink size={14} /> Ver proyecto
+      </a>
+    </div>
+
+    {/* Próximo proyecto */}
+    <div className="bg-white/5 backdrop-blur rounded-2xl p-6 border border-dashed border-white/20 flex flex-col items-center justify-center min-h-[200px]">
+      <span className="text-4xl mb-3">🚀</span>
+      <p className="text-white/50 text-center">Tu próximo proyecto aquí</p>
+    </div>
+  </div>
+</section>
 
       {/* Habilidades */}
       <section className="py-20 px-4 max-w-4xl mx-auto">
