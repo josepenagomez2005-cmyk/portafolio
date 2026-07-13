@@ -194,7 +194,6 @@ export default function Home() {
                       src={proj.foto} 
                       alt={proj.titulo} 
                       className="w-full h-full object-scale-down rounded-2xl"
-                      loading="lazy"
                     />
                   </div>
                   <div className="w-full md:w-1/2 p-6 md:p-10 flex flex-col justify-center">
@@ -223,23 +222,31 @@ export default function Home() {
         </motion.section>
 
         {/* Habilidades */}
-        <section className="py-16 md:py-20 px-4 max-w-4xl mx-auto">
+        <motion.section
+          id="habilidades"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={fadeIn}
+          className="py-16 md:py-20 px-4 max-w-4xl mx-auto"
+        >
           <h2 className="text-2xl md:text-3xl font-black text-center mb-2">Habilidades</h2>
           <div className="w-12 h-1 bg-[#E8A87C] mx-auto mb-4 rounded-full"></div>
           <p className="text-[#6B705C] text-center mb-12 text-sm md:text-base font-light">Tecnologías con las que trabajo</p>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
             {habilidades.map((skill) => (
-              <div
+              <motion.div
                 key={skill.name}
+                whileHover={{ scale: 1.05 }}
                 className="bg-white rounded-2xl p-5 md:p-6 text-center shadow-sm border border-[#E8A87C]/10 hover:shadow-md transition cursor-default"
               >
                 <skill.icon size={28} className="text-[#E8A87C] mx-auto mb-3" />
                 <h3 className="font-semibold text-xs md:text-sm text-[#2D2D2D]">{skill.name}</h3>
-              </div>
+              </motion.div>
             ))}
           </div>
-        </section>
+        </motion.section>
 
         {/* Contacto */}
         <section id="contacto" className="py-16 md:py-20 px-4 max-w-2xl mx-auto text-center">
