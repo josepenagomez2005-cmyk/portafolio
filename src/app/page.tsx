@@ -3,18 +3,10 @@
 import { Mail, Phone, MapPin, ExternalLink, Code, Database, Palette, Globe, Server, Layers, ArrowRight, Sparkles, ChevronDown, Menu, X } from "lucide-react";
 import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
-import { useEffect, useState } from "react";
-import Particles from "@tsparticles/react";
-import { loadSlim } from "@tsparticles/slim";
-import type { Engine } from "@tsparticles/engine";
+import { useState } from "react";
 
 export default function Home() {
-  const [particlesInit, setParticlesInit] = useState(false);
   const [menuAbierto, setMenuAbierto] = useState(false);
-
-  useEffect(() => {
-    loadSlim({} as Engine).then(() => setParticlesInit(true));
-  }, []);
 
   const fadeIn = {
     hidden: { opacity: 0, y: 40 },
@@ -60,23 +52,7 @@ export default function Home() {
   ];
 
   return (
-    <main className="min-h-screen bg-[#FDF6F0] text-[#2D2D2D] relative">
-      {particlesInit && (
-        <Particles
-          className="absolute inset-0 z-0"
-          options={{
-            particles: {
-              number: { value: 15, density: { enable: true } },
-              color: { value: "#E8A87C" },
-              opacity: { value: 0.08 },
-              size: { value: 3 },
-              move: { enable: true, speed: 0.3 },
-              links: { enable: true, color: "#E8A87C", opacity: 0.06, distance: 200 },
-            },
-          }}
-        />
-      )}
-
+    <main className="min-h-screen bg-gradient-to-br from-[#FDF6F0] via-[#FDF6F0] to-[#F5E6D8] text-[#2D2D2D] relative">
       <div className="relative z-10">
         {/* Navbar */}
         <nav className="sticky top-0 z-50 bg-[#FDF6F0]/90 backdrop-blur border-b border-[#E8A87C]/20">
@@ -170,7 +146,7 @@ export default function Home() {
           id="sobre-mi"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, margin: "-100px" }}
+          viewport={{ once: true, margin: "-50px" }}
           variants={fadeIn}
           className="py-16 md:py-20 px-4 max-w-3xl mx-auto"
         >
@@ -194,7 +170,7 @@ export default function Home() {
           id="proyectos"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, margin: "-100px" }}
+          viewport={{ once: true, margin: "-50px" }}
           variants={fadeIn}
           className="py-16 md:py-20 px-4 max-w-5xl mx-auto"
         >
@@ -208,7 +184,7 @@ export default function Home() {
                 key={proj.titulo}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false }}
+                viewport={{ once: true }}
                 transition={{ delay: i * 0.15 }}
                 className="bg-white rounded-3xl overflow-hidden shadow-sm border border-[#E8A87C]/10 hover:shadow-md transition"
               >
@@ -250,7 +226,7 @@ export default function Home() {
           id="habilidades"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, margin: "-100px" }}
+          viewport={{ once: true, margin: "-50px" }}
           variants={fadeIn}
           className="py-16 md:py-20 px-4 max-w-4xl mx-auto"
         >
@@ -273,14 +249,7 @@ export default function Home() {
         </motion.section>
 
         {/* Contacto */}
-        <section
-          id="contacto"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, margin: "-100px" }}
-          variants={fadeIn}
-          className="py-16 md:py-20 px-4 max-w-2xl mx-auto text-center"
-        >
+        <section id="contacto" className="py-16 md:py-20 px-4 max-w-2xl mx-auto text-center">
           <h2 className="text-2xl md:text-3xl font-black mb-2">Contacto</h2>
           <div className="w-12 h-1 bg-[#E8A87C] mx-auto mb-4 rounded-full"></div>
           <p className="text-[#6B705C] mb-8 font-light">¿Tienes un proyecto en mente? Hablemos.</p>
