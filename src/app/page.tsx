@@ -273,7 +273,7 @@ export default function Home() {
         </motion.section>
 
         {/* Contacto */}
-        <motion.section
+        <section
           id="contacto"
           initial="hidden"
           whileInView="visible"
@@ -299,7 +299,7 @@ export default function Home() {
               <MapPin size={18} /> Cuba
             </p>
           </div>
-        </motion.section>
+        </section>
 
         {/* Footer */}
         <footer className="text-center py-8 text-[#6B705C] text-xs md:text-sm border-t border-[#E8A87C]/10 font-light">
