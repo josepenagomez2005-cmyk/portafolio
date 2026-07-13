@@ -1,193 +1,311 @@
-import { Mail, Phone, MapPin, ExternalLink, Code, Database, Palette, Globe, Server, Layers } from "lucide-react";
+"use client";
+
+import { Mail, Phone, MapPin, ExternalLink, Code, Database, Palette, Globe, Server, Layers, ArrowRight, Sparkles, ChevronDown, Menu, X } from "lucide-react";
+import { motion } from "framer-motion";
+import { TypeAnimation } from "react-type-animation";
+import { useEffect, useState } from "react";
+import Particles from "@tsparticles/react";
+import { loadSlim } from "@tsparticles/slim";
+import type { Engine } from "@tsparticles/engine";
 
 export default function Home() {
+  const [particlesInit, setParticlesInit] = useState(false);
+  const [menuAbierto, setMenuAbierto] = useState(false);
+
+  useEffect(() => {
+    loadSlim({} as Engine).then(() => setParticlesInit(true));
+  }, []);
+
+  const fadeIn = {
+    hidden: { opacity: 0, y: 40 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+  };
+
+  const proyectos = [
+    {
+      titulo: "PlanGuard",
+      subtitulo: "Sistema de Control de Proyectos",
+      descripcion: "Aplicación web full-stack para una empresa de diseño y remodelaciones en Florida, EE.UU. Gestiona proyectos en 18 fases, con dashboard de KPIs, recordatorios por email y base de datos de clientes.",
+      techs: ["Next.js", "TypeScript", "Supabase", "Resend", "Tailwind CSS", "Vercel"],
+      url: "https://planguard-app.vercel.app",
+      foto: "/fotos/planguard.jpg",
+    },
+    {
+      titulo: "El Cubano",
+      subtitulo: "Landing Page · Restaurante Gourmet",
+      descripcion: "Página web profesional para restaurante de comida tradicional cubana. Carta digital, galería de imágenes, reseñas y reservas por WhatsApp.",
+      techs: ["Next.js", "Tailwind CSS", "Vercel"],
+      url: "https://el-cubano-kmi3333333.vercel.app",
+      foto: "/fotos/el-cubano.jpg",
+    },
+    {
+      titulo: "BarberoClub",
+      subtitulo: "Landing Page · Barbería Premium",
+      descripcion: "Landing page moderna para barbería con catálogo de servicios, galería de trabajos, perfil del equipo y reserva de citas por WhatsApp.",
+      techs: ["Next.js", "Tailwind CSS", "Vercel"],
+      url: "https://barberia-ten-nu.vercel.app",
+      foto: "/fotos/barberia.jpg",
+    },
+  ];
+
+  const habilidades = [
+    { icon: Code, name: "Next.js / React" },
+    { icon: Server, name: "Supabase / PostgreSQL" },
+    { icon: Palette, name: "Tailwind CSS" },
+    { icon: Globe, name: "Vercel / Deploy" },
+    { icon: Database, name: "REST APIs" },
+    { icon: Mail, name: "Resend / Emails" },
+    { icon: Layers, name: "TypeScript" },
+    { icon: Sparkles, name: "Framer Motion" },
+  ];
+
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 text-white">
-      {/* Hero */}
-      <section className="min-h-screen flex flex-col items-center justify-center text-center px-4 py-20">
-        <div className="bg-white/10 backdrop-blur w-32 h-32 rounded-full flex items-center justify-center mb-6 border-2 border-white/20 shadow-2xl">
-          <span className="text-5xl font-black">JP</span>
-        </div>
-        <h1 className="text-4xl md:text-6xl font-extrabold mb-4 tracking-tight">
-          Jose Pena
-        </h1>
-        <div className="w-20 h-1 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full mb-6"></div>
-        <p className="text-xl md:text-2xl text-white/70 mb-2 max-w-2xl">
-          Desarrollador Full-Stack
-        </p>
-        <p className="text-white/50 mb-10 max-w-xl">
-          Construyo aplicaciones web y páginas profesionales para negocios que necesitan presencia digital, control y automatización.
-        </p>
+    <main className="min-h-screen bg-[#FDF6F0] text-[#2D2D2D] relative">
+      {particlesInit && (
+        <Particles
+          className="absolute inset-0 z-0"
+          options={{
+            particles: {
+              number: { value: 15, density: { enable: true } },
+              color: { value: "#E8A87C" },
+              opacity: { value: 0.08 },
+              size: { value: 3 },
+              move: { enable: true, speed: 0.3 },
+              links: { enable: true, color: "#E8A87C", opacity: 0.06, distance: 200 },
+            },
+          }}
+        />
+      )}
 
-        <div className="flex flex-wrap gap-4 justify-center">
-          <a href="#servicios" className="bg-white text-slate-900 px-6 py-3 rounded-xl font-bold hover:bg-gray-200 transition">
-            Servicios
-          </a>
-          <a href="#proyectos" className="border border-white/30 px-6 py-3 rounded-xl font-bold hover:bg-white/10 transition">
-            Ver proyectos
-          </a>
-          <a href="#contacto" className="border border-white/30 px-6 py-3 rounded-xl font-bold hover:bg-white/10 transition">
-            Contactarme
-          </a>
-        </div>
-
-        <p className="text-white/20 text-sm mt-20 animate-bounce">↓ Desliza</p>
-      </section>
-
-      {/* Servicios */}
-      <section id="servicios" className="py-20 px-4 max-w-4xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">Servicios</h2>
-        <div className="w-16 h-1 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full mx-auto mb-12"></div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-white/5 backdrop-blur rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition text-center">
-            <span className="text-4xl mb-4 block">📱</span>
-            <h3 className="text-xl font-bold mb-2">Aplicaciones Web</h3>
-            <p className="text-white/60">
-              Sistemas de gestión, dashboards, automatizaciones. Como PlanGuard: control total de tu negocio desde el navegador.
-            </p>
-          </div>
-          <div className="bg-white/5 backdrop-blur rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition text-center">
-            <span className="text-4xl mb-4 block">🌐</span>
-            <h3 className="text-xl font-bold mb-2">Páginas Web</h3>
-            <p className="text-white/60">
-              Landing pages, sitios institucionales, portafolios, páginas de ventas. Rápidas, responsive y optimizadas.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Proyectos */}
-<section id="proyectos" className="py-20 px-4 max-w-6xl mx-auto">
-  <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">Proyectos</h2>
-  <div className="w-16 h-1 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full mx-auto mb-12"></div>
-
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-    {/* PlanGuard */}
-    <div className="bg-white/5 backdrop-blur rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition group">
-      <div className="flex items-center gap-3 mb-4">
-        <div className="bg-blue-500 p-2 rounded-xl">
-          <Layers size={24} />
-        </div>
-        <h3 className="text-xl font-bold">PlanGuard</h3>
-      </div>
-      <p className="text-white/60 mb-4">
-        Sistema de control de proyectos para empresa de diseño y remodelaciones en Florida, EE.UU.
-      </p>
-      <div className="flex flex-wrap gap-2 mb-4">
-        {["Next.js", "Supabase", "Resend", "Tailwind", "Vercel"].map((tech) => (
-          <span key={tech} className="text-xs bg-white/10 px-2 py-1 rounded-full text-white/70">
-            {tech}
-          </span>
-        ))}
-      </div>
-      <a href="https://planguard-app.vercel.app" target="_blank" className="text-blue-400 hover:text-blue-300 text-sm flex items-center gap-1">
-        <ExternalLink size={14} /> Ver proyecto
-      </a>
-    </div>
-
-    {/* El Cubano */}
-    <div className="bg-white/5 backdrop-blur rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition group">
-      <div className="flex items-center gap-3 mb-4">
-        <div className="bg-amber-500 p-2 rounded-xl">
-          <Globe size={24} />
-        </div>
-        <h3 className="text-xl font-bold">El Cubano</h3>
-      </div>
-      <p className="text-white/60 mb-4">
-        Landing page gourmet para restaurante de comida tradicional cubana. Diseño elegante y moderno.
-      </p>
-      <div className="flex flex-wrap gap-2 mb-4">
-        {["Next.js", "Tailwind", "Vercel"].map((tech) => (
-          <span key={tech} className="text-xs bg-white/10 px-2 py-1 rounded-full text-white/70">
-            {tech}
-          </span>
-        ))}
-      </div>
-      <a href="https://el-cubano-kmi3333333.vercel.app" target="_blank" className="text-blue-400 hover:text-blue-300 text-sm flex items-center gap-1">
-        <ExternalLink size={14} /> Ver proyecto
-      </a>
-    </div>
-
-    {/* Barbería */}
-    <div className="bg-white/5 backdrop-blur rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition group">
-      <div className="flex items-center gap-3 mb-4">
-        <div className="bg-emerald-500 p-2 rounded-xl">
-          <Globe size={24} />
-        </div>
-        <h3 className="text-xl font-bold">BarberoClub</h3>
-      </div>
-      <p className="text-white/60 mb-4">
-        Landing page para barbería premium. Fresca, moderna y con reserva por WhatsApp.
-      </p>
-      <div className="flex flex-wrap gap-2 mb-4">
-        {["Next.js", "Tailwind", "Vercel"].map((tech) => (
-          <span key={tech} className="text-xs bg-white/10 px-2 py-1 rounded-full text-white/70">
-            {tech}
-          </span>
-        ))}
-      </div>
-      <a href="https://barberia-ten-nu.vercel.app" target="_blank" className="text-blue-400 hover:text-blue-300 text-sm flex items-center gap-1">
-        <ExternalLink size={14} /> Ver proyecto
-      </a>
-    </div>
-
-    {/* Próximo proyecto */}
-    <div className="bg-white/5 backdrop-blur rounded-2xl p-6 border border-dashed border-white/20 flex flex-col items-center justify-center min-h-[200px]">
-      <span className="text-4xl mb-3">🚀</span>
-      <p className="text-white/50 text-center">Tu próximo proyecto aquí</p>
-    </div>
-  </div>
-</section>
-
-      {/* Habilidades */}
-      <section className="py-20 px-4 max-w-4xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">Habilidades</h2>
-        <div className="w-16 h-1 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full mx-auto mb-12"></div>
-
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-          {[
-            { icon: Code, name: "Next.js / React", desc: "Frontend moderno" },
-            { icon: Server, name: "Supabase / PostgreSQL", desc: "Backend y base de datos" },
-            { icon: Globe, name: "Vercel / Deploy", desc: "Hosting serverless" },
-            { icon: Palette, name: "Tailwind CSS", desc: "Diseño responsive" },
-            { icon: Database, name: "APIs REST", desc: "Integraciones" },
-            { icon: Mail, name: "Resend / Emails", desc: "Correos automáticos" },
-          ].map((skill) => (
-            <div key={skill.name} className="bg-white/5 backdrop-blur rounded-xl p-4 border border-white/10 text-center hover:bg-white/10 transition">
-              <skill.icon size={28} className="text-blue-400 mx-auto mb-2" />
-              <h3 className="font-semibold text-sm">{skill.name}</h3>
-              <p className="text-white/40 text-xs mt-1">{skill.desc}</p>
+      <div className="relative z-10">
+        {/* Navbar */}
+        <nav className="sticky top-0 z-50 bg-[#FDF6F0]/90 backdrop-blur border-b border-[#E8A87C]/20">
+          <div className="max-w-5xl mx-auto flex justify-between items-center p-4">
+            <span className="text-xl font-extrabold text-[#2D2D2D] tracking-tight">JP</span>
+            <div className="hidden md:flex gap-8 text-sm font-medium text-[#6B705C]">
+              <a href="#sobre-mi" className="hover:text-[#E8A87C] transition">Sobre mí</a>
+              <a href="#proyectos" className="hover:text-[#E8A87C] transition">Proyectos</a>
+              <a href="#habilidades" className="hover:text-[#E8A87C] transition">Habilidades</a>
+              <a href="#contacto" className="hover:text-[#E8A87C] transition">Contacto</a>
             </div>
-          ))}
-        </div>
-      </section>
+            <button className="md:hidden text-[#2D2D2D]" onClick={() => setMenuAbierto(!menuAbierto)}>
+              {menuAbierto ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+          {menuAbierto && (
+            <div className="md:hidden bg-[#FDF6F0] border-t border-[#E8A87C]/20 p-4 flex flex-col gap-4 text-sm font-medium text-[#6B705C]">
+              <a href="#sobre-mi" onClick={() => setMenuAbierto(false)} className="hover:text-[#E8A87C]">Sobre mí</a>
+              <a href="#proyectos" onClick={() => setMenuAbierto(false)} className="hover:text-[#E8A87C]">Proyectos</a>
+              <a href="#habilidades" onClick={() => setMenuAbierto(false)} className="hover:text-[#E8A87C]">Habilidades</a>
+              <a href="#contacto" onClick={() => setMenuAbierto(false)} className="hover:text-[#E8A87C]">Contacto</a>
+            </div>
+          )}
+        </nav>
 
-      {/* Contacto */}
-      <section id="contacto" className="py-20 px-4 max-w-2xl mx-auto text-center">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">Contacto</h2>
-        <div className="w-16 h-1 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full mx-auto mb-12"></div>
+        {/* Hero */}
+        <section className="min-h-[90vh] flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 px-4 py-12 max-w-5xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            className="w-40 h-40 md:w-56 md:h-56 rounded-full overflow-hidden shadow-2xl flex-shrink-0"
+          >
+            <img src="/fotos/mi-foto.jpg" alt="Jose D. Pena Gómez" className="w-full h-full object-cover" />
+          </motion.div>
 
-        <div className="space-y-4">
-          <a href="mailto:josepenagomez2005@gmail.com" className="flex items-center gap-3 justify-center text-white/70 hover:text-white transition text-lg">
-            <Mail size={20} /> josepenagomez2005@gmail.com
-          </a>
-          <a href="https://wa.me/5356956051" className="flex items-center gap-3 justify-center text-white/70 hover:text-white transition text-lg">
-            <Phone size={20} /> +53 56956051
-          </a>
-          <a href="https://github.com/Josepenagomez2005-cmyk" className="flex items-center gap-3 justify-center text-white/70 hover:text-white transition text-lg">
-            <span className="text-xl">🐙</span> GitHub
-          </a>
-          <p className="flex items-center gap-3 justify-center text-white/50 text-lg">
-            <MapPin size={20} /> Cuba
-          </p>
-        </div>
-      </section>
+          <div className="text-center md:text-left">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="text-[#E8A87C] font-semibold mb-2 tracking-[0.2em] uppercase text-xs md:text-sm"
+            >
+              Desarrollador Full-Stack
+            </motion.p>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              className="text-2xl md:text-4xl font-semibold mb-4 tracking-normal"
+            >
+              Jose D. Pena Gómez
+            </motion.h1>
+            <div className="h-8 text-base md:text-lg text-[#6B705C] mb-6 font-light">
+              <TypeAnimation
+                sequence={[
+                  "Construyo aplicaciones web modernas",
+                  2000,
+                  "Creo landing pages profesionales",
+                  2000,
+                  "Automatizo procesos de negocio",
+                  2000,
+                ]}
+                wrapper="span"
+                speed={45}
+                repeat={Infinity}
+              />
+            </div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1 }}
+              className="flex gap-3 justify-center md:justify-start"
+            >
+              <a href="#proyectos" className="bg-[#E8A87C] text-white px-6 py-3.5 rounded-2xl font-bold text-sm hover:bg-[#d4956b] transition flex items-center gap-2 shadow-lg shadow-[#E8A87C]/20">
+                Ver proyectos <ArrowRight size={16} />
+              </a>
+              <a href="#contacto" className="border-2 border-[#E8A87C] text-[#E8A87C] px-6 py-3.5 rounded-2xl font-bold text-sm hover:bg-[#E8A87C]/10 transition">
+                Contacto
+              </a>
+            </motion.div>
+          </div>
+        </section>
 
-      {/* Footer */}
-      <footer className="text-center py-8 text-white/20 text-sm border-t border-white/5">
-        © 2026 Jose Pena · Desarrollador Full-Stack
-      </footer>
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2 }} className="text-center pb-8 -mt-8">
+          <ChevronDown size={24} className="text-[#E8A87C]/40 mx-auto animate-bounce" />
+        </motion.div>
+
+        {/* Sobre mí */}
+        <motion.section
+          id="sobre-mi"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, margin: "-100px" }}
+          variants={fadeIn}
+          className="py-16 md:py-20 px-4 max-w-3xl mx-auto"
+        >
+          <h2 className="text-2xl md:text-3xl font-black text-center mb-2">Sobre mí</h2>
+          <div className="w-12 h-1 bg-[#E8A87C] mx-auto mb-8 rounded-full"></div>
+          <div className="bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-[#E8A87C]/10">
+            <p className="text-[#6B705C] leading-relaxed text-base md:text-lg font-light">
+              Soy un desarrollador full-stack autodidacta apasionado por crear soluciones digitales que resuelven problemas reales. Me especializo en construir aplicaciones web modernas y landing pages profesionales.
+            </p>
+            <p className="text-[#6B705C] leading-relaxed text-base md:text-lg mt-6 font-light">
+              Mi enfoque es simple: entender la necesidad del negocio y traducirla en una herramienta funcional, rápida y fácil de usar. He trabajado con clientes internacionales entregando sistemas de gestión y páginas web que generan resultados.
+            </p>
+            <p className="text-[#6B705C] leading-relaxed text-base md:text-lg mt-6 font-light">
+              Cuando no estoy programando, me gusta explorar nuevas tecnologías y seguir aprendiendo para ofrecer siempre lo mejor.
+            </p>
+          </div>
+        </motion.section>
+
+        {/* Proyectos */}
+        <motion.section
+          id="proyectos"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, margin: "-100px" }}
+          variants={fadeIn}
+          className="py-16 md:py-20 px-4 max-w-5xl mx-auto"
+        >
+          <h2 className="text-2xl md:text-3xl font-black text-center mb-2">Proyectos</h2>
+          <div className="w-12 h-1 bg-[#E8A87C] mx-auto mb-4 rounded-full"></div>
+          <p className="text-[#6B705C] text-center mb-12 text-sm md:text-base font-light">Trabajos reales para clientes reales</p>
+
+          <div className="space-y-12">
+            {proyectos.map((proj, i) => (
+              <motion.div
+                key={proj.titulo}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false }}
+                transition={{ delay: i * 0.15 }}
+                className="bg-white rounded-3xl overflow-hidden shadow-sm border border-[#E8A87C]/10 hover:shadow-md transition"
+              >
+                <div className="flex flex-col md:flex-row">
+                  <div className="w-full md:w-1/2 h-80 md:h-auto md:min-h-[400px] bg-[#E8A87C]/5 flex items-center justify-center p-6">
+                    <img 
+                      src={proj.foto} 
+                      alt={proj.titulo} 
+                      className="w-full h-full object-scale-down rounded-2xl"
+                    />
+                  </div>
+                  <div className="w-full md:w-1/2 p-6 md:p-10 flex flex-col justify-center">
+                    <p className="text-[#E8A87C] text-xs font-semibold uppercase tracking-[0.15em] mb-2">{proj.subtitulo}</p>
+                    <h3 className="text-2xl md:text-3xl font-black mb-4">{proj.titulo}</h3>
+                    <p className="text-[#6B705C] leading-relaxed mb-5 font-light text-sm md:text-base">{proj.descripcion}</p>
+                    <div className="flex flex-wrap gap-2 mb-5">
+                      {proj.techs.map((tech) => (
+                        <span key={tech} className="text-xs bg-[#FDF6F0] text-[#6B705C] px-3 py-1 rounded-full font-medium border border-[#E8A87C]/20">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                    <a
+                      href={proj.url}
+                      target="_blank"
+                      className="inline-flex items-center gap-2 text-white bg-[#E8A87C] hover:bg-[#d4956b] font-bold text-sm px-5 py-2.5 rounded-xl transition w-fit"
+                    >
+                      <ExternalLink size={14} /> Visitar proyecto
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.section>
+
+        {/* Habilidades */}
+        <motion.section
+          id="habilidades"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, margin: "-100px" }}
+          variants={fadeIn}
+          className="py-16 md:py-20 px-4 max-w-4xl mx-auto"
+        >
+          <h2 className="text-2xl md:text-3xl font-black text-center mb-2">Habilidades</h2>
+          <div className="w-12 h-1 bg-[#E8A87C] mx-auto mb-4 rounded-full"></div>
+          <p className="text-[#6B705C] text-center mb-12 text-sm md:text-base font-light">Tecnologías con las que trabajo</p>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+            {habilidades.map((skill) => (
+              <motion.div
+                key={skill.name}
+                whileHover={{ scale: 1.05 }}
+                className="bg-white rounded-2xl p-5 md:p-6 text-center shadow-sm border border-[#E8A87C]/10 hover:shadow-md transition cursor-default"
+              >
+                <skill.icon size={28} className="text-[#E8A87C] mx-auto mb-3" />
+                <h3 className="font-semibold text-xs md:text-sm text-[#2D2D2D]">{skill.name}</h3>
+              </motion.div>
+            ))}
+          </div>
+        </motion.section>
+
+        {/* Contacto */}
+        <motion.section
+          id="contacto"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, margin: "-100px" }}
+          variants={fadeIn}
+          className="py-16 md:py-20 px-4 max-w-2xl mx-auto text-center"
+        >
+          <h2 className="text-2xl md:text-3xl font-black mb-2">Contacto</h2>
+          <div className="w-12 h-1 bg-[#E8A87C] mx-auto mb-4 rounded-full"></div>
+          <p className="text-[#6B705C] mb-8 font-light">¿Tienes un proyecto en mente? Hablemos.</p>
+
+          <div className="bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-[#E8A87C]/10 space-y-5">
+            <a href="mailto:josepenagomez2005@gmail.com" className="flex items-center gap-3 justify-center text-[#2D2D2D] hover:text-[#E8A87C] transition font-medium text-sm md:text-base">
+              <Mail size={18} /> josepenagomez2005@gmail.com
+            </a>
+            <a href="https://wa.me/5356956051" className="flex items-center gap-3 justify-center text-[#2D2D2D] hover:text-[#E8A87C] transition font-medium text-sm md:text-base">
+              <Phone size={18} /> +53 56956051
+            </a>
+            <a href="https://github.com/Josepenagomez2005-cmyk" className="flex items-center gap-3 justify-center text-[#2D2D2D] hover:text-[#E8A87C] transition font-medium text-sm md:text-base">
+              <span className="text-lg">🐙</span> GitHub
+            </a>
+            <p className="flex items-center gap-3 justify-center text-[#6B705C] font-light text-sm md:text-base">
+              <MapPin size={18} /> Cuba
+            </p>
+          </div>
+        </motion.section>
+
+        {/* Footer */}
+        <footer className="text-center py-8 text-[#6B705C] text-xs md:text-sm border-t border-[#E8A87C]/10 font-light">
+          © 2026 Jose D. Pena Gómez · Desarrollador Full-Stack
+        </footer>
+      </div>
     </main>
   );
 }

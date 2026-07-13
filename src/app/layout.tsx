@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Jose Pena | Desarrollador Full-Stack",
-  description: "Portafolio profesional - Aplicaciones web modernas",
+  title: "Jose D. Pena Gómez | Desarrollador Full-Stack",
+  description: "Portafolio profesional - Aplicaciones web y landing pages",
 };
 
 export default function RootLayout({
@@ -16,7 +16,7 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
-      <body className="bg-slate-900">{children}</body>
+      <body className="bg-[#FDF6F0]">{children}</body>
     </html>
   );
 }
